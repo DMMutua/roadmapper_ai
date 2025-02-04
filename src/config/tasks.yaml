@@ -1,0 +1,21 @@
+tool_options:
+  name: >- 
+    tool_options
+  description: >-
+    Given a professional ROLE that is a {position}, create a Dynamic set of 3 to 7 Tools Options that a Student wanting to be a Professional Expert as a {position} Must be Conversant with. 
+    Tools that are Mutually Exclusive to Learn for a {position} MUST be kept as different Options in the Output Set. A User will Choose a Maximum of 2 Tool Options to Master from the Dynamic Tool Set you will Output.
+  expected_output: >-
+    POSITION: {position}
+    TOOLS_LIST:
+      - TOOL:
+          NAME: <tool_name>
+          DESCRIPTION: <tool_description>
+      - TOOL:
+          NAME: <tool_name>
+          DESCRIPTION: <tool_description>
+      - TOOL:
+          NAME: <tool_name>
+          DESCRIPTION: <tool_description>
+
+
+  

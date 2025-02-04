@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "roadmapper_ai"
+version = "0.0.1"
+description = "Map, Organize and Clarify your Way Into Mastery of any Tool, Objective or Professional Role"
+authors = ["DMMutua <davymtuerr@gmail.com>"]
+license = "MIT"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = ">=3.10,<=3.13"
+agentstack = {extras = ["crewai"], version="0.2.2.2"}
+
+[project.scripts]
+roadmapper_ai = "roadmapper_ai.main:run"
+run_crew = "roadmapper_ai.main:run"
+train = "roadmapper_ai.main:train"
+replay = "roadmapper_ai.main:replay"
+test = "roadmapper_ai.main:test"
