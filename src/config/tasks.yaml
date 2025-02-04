@@ -16,6 +16,28 @@ tool_options:
       - TOOL:
           NAME: <tool_name>
           DESCRIPTION: <tool_description>
-
+platform_options:
+  name: >-
+    platform_options
+  description: >-
+    Given a professional {position} and a maximum of 2 Tool Options,
+    create a Dynamic set of 2 to 5 Platform Options that
+    a Student wanting to be a Professional Expert in the {position}
+    Must be Conversant with. Platforms that are Mutually Exclusive to Learn for a ROLE that is {position}
+    MUST be kept as different Options in the Output Set. A User will Choose a Maximum
+    of 2 Platform Options
+  expected_output: >-
+    POSITION: {position}
+    TOOLS_SELECTED:[<tool>,<tool>]
+    PLATFORM
+      - PLATFORM:
+          NAME: <platform name>
+          DESCRIPTION: <platform_description>
+      - TOOL:
+          NAME: <platform_name>
+          DESCRIPTION: <platform_description>
+      - TOOL:
+          NAME: <platform_name>
+          DESCRIPTION: <platform_description>
 
   
