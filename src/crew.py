@@ -51,9 +51,8 @@ class RoadmapperaiCrew():
     def platform_options(self) -> Task:
         return Task(
             config=self.tasks_config['platform_options'],
-            #context=["tool_options"],
             output_json=Platform_Structure,
-            #human_input=True,
+            context=[self.tool_options()],
             callback=lambda output: update_task_output(
                 task_output=output.raw,
                 selection_function=user_select_platforms,
@@ -65,7 +64,8 @@ class RoadmapperaiCrew():
     def project_options(self) -> Task:
         return Task(
             config=self.tasks_config['project_options'],
-            #context=["tool_options", "platform_options"],
+            context=[self.tool_options(),
+                     self.platform_options()],
             output_json=Project_Structure,
             #human_input=True,
             callback=lambda output: update_task_output(
@@ -80,21 +80,21 @@ class RoadmapperaiCrew():
     def project_TODO(self) -> Task:
         return Task(
             config=self.tasks_config['project_TODO'],
-            #context=[project_options]
+            context=[self.project_options()]
         )
 
     @task
     def stage_gen(self) -> Task:
         return Task(
-            config=self.tasks_config['stage_gen'],
-            #context=[tool_options, platform_options, project_TODO]
+            config = self.tasks_config['stage_gen'],
+            context = [self.tool_options(), self.platform_options(), self.project_TODO()]
         )
 
     @task
     def stage_expound(self) -> Task:
         return Task(
             config=self.tasks_config['stage_expound'],
-            #context=[stage_gen]
+            context = [self.stage_gen()]
         )
 
     @crew

@@ -14,7 +14,8 @@ def run():
     """1 1 
     Run the crew.
     """
-    ins: dict = {'position': 'NLP Machine Learning Engineer'.strip()} #Sample Role
+    #ins: dict = {'position': 'NLP Machine Learning Engineer'.strip()} #Sample Role
+    ins: dict = input_role_to_map()
     # TODO: Add Logic to Handle {role} Input within Shell after Program Execution.
     RoadmapperaiCrew().crew().kickoff(inputs=ins)
 
