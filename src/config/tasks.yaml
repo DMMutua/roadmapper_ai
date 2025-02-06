@@ -16,28 +16,181 @@ tool_options:
       - TOOL:
           NAME: <tool_name>
           DESCRIPTION: <tool_description>
+  agent: >-
+    Clarifier
 platform_options:
   name: >-
     platform_options
   description: >-
     Given a professional {position} and a maximum of 2 Tool Options,
     create a Dynamic set of 2 to 5 Platform Options that
-    a Student wanting to be a Professional Expert in the {position}
-    Must be Conversant with. Platforms that are Mutually Exclusive to Learn for a ROLE that is {position}
-    MUST be kept as different Options in the Output Set. A User will Choose a Maximum
-    of 2 Platform Options
+    a Student wanting to be a Professional Expert as a {position}
+    Must be Conversant with. Platforms that are Mutually Exclusive to Master as a {position}
+    MUST be kept as different Options in the Output Set. Platforms that are
+    mutually Inclusive must be Presented as part of the Same Option on the Output Set.
+    A User will Choose a Maximum of 2 Platform Options.
   expected_output: >-
     POSITION: {position}
     TOOLS_SELECTED:[<tool>,<tool>]
-    PLATFORM
+    PLATFORMS_LIST
       - PLATFORM:
           NAME: <platform name>
           DESCRIPTION: <platform_description>
-      - TOOL:
+      - PLATFORM:
           NAME: <platform_name>
           DESCRIPTION: <platform_description>
-      - TOOL:
+      - PLATFORM:
           NAME: <platform_name>
           DESCRIPTION: <platform_description>
-
-  
+  agent: >-
+    Clarifier
+  context: >-
+    tool_options
+project_options:
+  name: >-
+    project_options
+  description: >-
+    Given a ROLE that is a {position}, PLATFORMS_SELECTED, and TOOLS_SELECTED,
+    create a Dynamic Set of 3 - 7 RELEVANT Project Options that a User can Choose From to Showcase Mastery as a {position}.
+    Each Project Option should include a brief description of its purpose, challenges, and expected outcomes.
+    The User will Use your Project Options to Select 2 Mandatory Projects that They will Have to Complete as part of
+    their learning journey to be an expert {position}.
+    Selected Projects from the Set will Feature on the Final Roadmap.
+  expected_output: >-
+    POSITION: {position}
+    TOOLS_SELECTED: [<tool>,<tool>]
+    PLATFORMS_SELECTED: [<platform>,<platform>]
+    PROJECTS_LIST
+      - PROJECT:
+          NAME: <project name>
+          DESCRIPTION: <project_description>
+          ADVANTAGES: <pros of the project if chosen here>
+          DISADVANTAGES: <cons of the project if chosen here>
+      - PROJECT:
+          NAME: <project name>
+          DESCRIPTION: <project_description>
+          ADVANTAGES: <pros of the project if chosen here>
+          DISADVANTAGES: <cons of the project if chosen here>
+      - PROJECT:
+          NAME: <project name>
+          DESCRIPTION: <project_description>
+          ADVANTAGES: <pros of the project if chosen here>
+          DISADVANTAGES: <cons of the project if chosen here>
+  agent: >- 
+    Project_Gen
+  context: >-
+    tool_options, platform_options
+project_TODO:
+  name: >-
+    project_TODO
+  description: >-
+    Given 2 selected PROJECTS in PROJECTS_SELECTED, generate a list of 5-10 TODOs for each project. 
+    Each TODO should include 3-5 specific sub-tasks that collectively complete the TODO.
+  expected_output: >-
+    POSITION: {position}
+    TOOLS_SELECTED: [<tool>,<tool>]
+    PLATFORMS_SELECTED: [<platform>,<platform>]
+    PROJECTS_SELECTED: [<project>,<project>]
+    - PROJECT:
+        NAME: <project_name>
+        TODOS:
+          - TODO:
+              TASK: <task_name>
+                SUBTASKS:
+                  - <subtask_1>
+                  - <subtask_2>
+                  - <subtask_3>
+          - TODO:
+              TASK: <task_name>
+                SUBTASKS:
+                  - <subtask_1>
+                  - <subtask_2>
+                  - <subtask_3>
+    - PROJECT:
+        NAME: <project_name>
+        TODOS:
+          - TODO:
+              TASK: <task_name>
+                SUBTASKS:
+                  - <subtask_1>
+                  - <subtask_2>
+                  - <subtask_3>
+          - TODO:
+              TASK: <task_name>
+                SUBTASKS:
+                  - <subtask_1>
+                  - <subtask_2>
+                  - <subtask_3>
+  agent: >-
+    Project_Gen
+  context: >-
+    project_options
+stage_gen:
+  name: >-
+    stage_gen
+  description: >-
+    Create a high-level roadmap with stages for achieving mastery in the user's ROLE.
+    Each stage should incorporate elements of the user's Selected ROLE, TOOLS, PLATFORMS, and PROJECT TODOS.
+    The Stages of the Roadmap should be comprehensive Enough to Inform the User on a Step by Step Basis
+    all the Actions they have to start and Complete on their journey from being an Amatuer {position} to an
+    expert {position}. Provide your Output In STRICTLY JSON FORMAT. Be Exhaustive and Thorough in your Stages Arrangement.
+  expected_output: >-
+    POSITION: {position}
+    TOOLS_SELECTED: [<tool>,<tool>]
+    PLATFORMS_SELECTED: [<platform>,<platform>]
+    PROJECTS_SELECTED: [<project>,<project>]
+    - ROADMAP
+        STAGES
+          - STAGE: <stage name here>
+              DESCRIPTION: <stage description>
+              DEPENDENCIES: <Tools, Platforms or stages that this stage will likely depend on here>
+          - STAGE: <stage name here>
+              DESCRIPTION: <stage description>
+              DEPENDENCIES: <Tools, Platforms or stages that this stage will likely depend on here>
+          - STAGE: <stage name here>
+              DESCRIPTION: <stage description>
+              DEPENDENCIES: <Tools, Platforms or stages that this stage will likely depend on here>
+  agent: >-
+    Roadmapper
+  context: >-
+    tool_options, platform_options, project_TODO
+stage_expound:
+  name: >-
+    stage_expound
+  description: >-
+    Given a High-Level Overview Roadmap of Stages and Actions needed for an Individual to Self-Teach 
+    Expound each stage of the roadmap with sub-stages and time estimates in HOURS. 
+    Provide your Output In STRICTLY JSON FORMAT. Include dependencies and prerequisites for each sub-stage.
+    Expound Recursively and Asynchronously to handle Dependencies Correctly and Thoroughly between each Task and Sub-Task.
+    Take Time to Think Deeply before you give your output.
+  expected_output: >-
+    POSITION: {position}
+    TOOLS_SELECTED: [<tool>,<tool>]
+    PLATFORMS_SELECTED: [<platform>,<platform>]
+    PROJECTS_SELECTED: [<project>,<project>]
+    - EXPOUNDED ROADMAP
+        STAGES
+          - STAGE: <stage name here>
+              SUB-STAGES:
+                - SUB-STAGE: <sub-stage name here>
+                    DESCRIPTION: <sub-stage description here>
+                    DURATION: <estimated completion time IN HOURS here>
+                    DEPENDENCIES: <Tools, Platforms or stages that this stage will likely depend on here>
+                - SUB-STAGE: <sub-stage name here>
+                    DESCRIPTION: <sub-stage description here>
+                    DURATION: <estimated completion time IN HOURS here>
+                    DEPENDENCIES: <Tools, Platforms or stages that this stage will likely depend on here>
+          - STAGE: <stage name here>
+              SUB-STAGES:
+                - SUB-STAGE: <sub-stage name here>
+                    DESCRIPTION: <sub-stage description here>
+                    DURATION: <estimated completion time IN HOURS here>
+                    DEPENDENCIES: <Tools, Platforms or stages that this stage will likely depend on here>
+                - SUB-STAGE: <sub-stage name here>
+                    DESCRIPTION: <sub-stage description here>
+                    DURATION: <estimated completion time IN HOURS here>
+                    DEPENDENCIES: <Tools, Platforms or stages that this stage will likely depend on here>
+  agent: >-
+    Roadmapper
+  context: >-
+    stage_gen, project_TODO

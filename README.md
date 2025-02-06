@@ -1,7 +1,6 @@
 # ROADMAPPER.AI
-RoadMapper.AI is an intelligent Gen-AI Agentic Platform that creates personalized, interactive learning roadmaps for professionals looking to master technical tools or transition into new roles.
-Using a multi-agent AI system, it generates customized learning paths complete with project suggestions and detailed milestones.
-<i>Note:- A Production Ready MVP Of the Project will be Served via a Python Flask API to a Web App Soon</i>
+RoadMapper.AI is an intelligent Gen-AI Agentic Platform that creates personalized, interactive learning roadmaps for Technical professionals looking to master technical tools or transition into new roles.</br>
+Using a multi-agent AI system, it generates customized learning paths complete with project suggestions and detailed milestones.</br>
 
 ## Features
 - Interactive goal clarification and refinement
