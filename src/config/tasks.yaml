@@ -2,6 +2,7 @@ tool_options:
   description: >-
     Given a professional ROLE that is a {position}, create a Dynamic set of 3 to 7 Tools Options that a Student wanting to be a Professional Expert as a {position} Must be Conversant with. 
     Tools that are Mutually Exclusive to Learn for a {position} MUST be kept as different Options in the Output Set. A User will Choose a Maximum of 2 Tool Options to Master from the Dynamic Tool Set you will Output.
+    Avoid Casual Textual Output with quote-marks between Valid JSON Output
   expected_output: >-
     POSITION: {position}
     TOOLS_LIST:
@@ -20,6 +21,7 @@ platform_options:
   description: >-
     Given a professional {position} and a maximum of 2 Tool Options, create a Dynamic set of 2 to 5 Platform Options that a Student wanting to be a Professional Expert as a {position} Must be Conversant with. Platforms that are Mutually Exclusive to Master as a {position} MUST be kept as different Options in the Output Set.
     Platforms that are mutually Inclusive must be Presented as part of the Same Option on the Output Set. A User will Choose a Maximum of 2 Platform Options.
+    Avoid Casual Textual Output with quote-marks between Valid JSON Output
   expected_output: >-
     POSITION: {position}
     TOOLS_SELECTED:[<tool>,<tool>]
@@ -40,6 +42,7 @@ project_options:
     Given a ROLE that is a {position}, PLATFORMS_SELECTED, and TOOLS_SELECTED, create a Dynamic Set of 3 - 7 RELEVANT Project Options that a User can Choose From to Showcase Mastery as a {position}.
     Each Project Option should include a brief description of its purpose, challenges, and expected outcomes.
     The User will Use your Project Options to Select 2 Mandatory Projects that They will Have to Complete as part of their learning journey to be an expert {position}.
+    Avoid Casual Textual Output with quote-marks between Valid JSON Output
   expected_output: >-
     POSITION: {position}
     TOOLS_SELECTED: [<tool>,<tool>]
@@ -66,6 +69,7 @@ project_TODO:
   description: >-
     Given 2 selected PROJECTS in PROJECTS_SELECTED, generate a list of 5-10 TODOs for each project. 
     Each TODO should include 3-5 specific sub-tasks that collectively complete the TODO.
+    Avoid Casual Textual Output with quote-marks between Valid JSON Output.
   expected_output: >-
     POSITION: {position}
     TOOLS_SELECTED: [<tool>,<tool>]
@@ -108,7 +112,7 @@ stage_gen:
     Create a high-level roadmap with stages for achieving mastery in the user's ROLE.
     Each stage should incorporate elements of the user's Selected ROLE, TOOLS, PLATFORMS, and PROJECT TODOS.
     The Stages of the Roadmap should be comprehensive Enough to Inform the User on a Step by Step Basis all the Actions they have to start and Complete on their journey from being an Amatuer {position} to an expert {position}. Provide your Output In STRICTLY JSON FORMAT.
-    Be Exhaustive and Thorough in your Stages Arrangement.
+    Be Exhaustive and Thorough in your Stages Arrangement. Avoid Casual Textual Output with quote-marks between Valid JSON Output
   expected_output: >-
     POSITION: {position}
     TOOLS_SELECTED: [<tool>,<tool>]
@@ -131,6 +135,7 @@ stage_expound:
   description: >-
     Given a High-Level Overview Roadmap of Stages and Actions needed for an Individual to Self-Teach Expound each stage of the roadmap with sub-stages and time estimates in HOURS. 
     Provide your Output In STRICTLY JSON FORMAT. Include dependencies and prerequisites for each sub-stage.
+    Avoid Casual Textual Output with quote-marks between Valid JSON Output
     Expound Recursively and Asynchronously to handle Dependencies Correctly and Thoroughly between each Task and Sub-Task.
     Take Time to Think Deeply before you give your output.
   expected_output: >-
