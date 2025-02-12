@@ -1,5 +1,5 @@
-agentops==0.3.25
-agentstack==0.2.5.1
+agentops==0.3.26
+agentstack==0.3.2
 aiohappyeyeballs==2.4.4
 aiohttp==3.11.11
 aiohttp-client-cache==0.11.0
@@ -255,8 +255,7 @@ requests-cache==1.2.1
 requests-oauthlib==2.0.0
 requests-toolbelt==1.0.0
 rich==13.9.4
-# Editable install with no version control (roadmapper_ai==0.0.1)
--e c:\users\administrator\desktop\ai_agents\principalone\roadmapper_ai
+-e git+https://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1@github.com/DMMutua/roadmapper_ai.git@35f88823ef25e9c84c6d921e6f126603b212cb67#egg=roadmapper_ai
 rpds-py==0.22.3
 rsa==4.9
 ruamel.yaml==0.18.10
