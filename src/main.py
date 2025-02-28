@@ -3,7 +3,7 @@ import sys
 import agentops
 from crew import RoadmapperaiCrew
 from dotenv import load_dotenv
-from task_callbacks import input_role_to_map
+from .task_callbacks import input_role_to_map
 
 load_dotenv() #loads API Keys from .env file
 

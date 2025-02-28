@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tool Options Output</title>
+</head>
+<body>
+    <h1>Available Tools for {{ position }}</h1>
+    <form id="tool-selection-form" method="post">
+        {% for tool in tools_list %}
+            <div>
+                <input type="checkbox" id="tool_{{ loop.index }}" 
+                       name="selected_tools" value="{{ tool.TOOL.NAME }}"
+                       onclick="checkMaxSelection(this)">
+                <label for="tool_{{ loop.index }}">
+                    {{ tool.TOOL.NAME }}: {{ tool.TOOL.DESCRIPTION }}
+                </label>
+            </div>
+        {% endfor %}
+        <button type="submit">Submit</button>
+    </form>
+    
+    <script>
+        function checkMaxSelection(checkbox) {
+            var checkboxes = document.getElementsByName('selected_tools');
+            var checked = 0;
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) checked++;
+            }
+            if (checked > 2) {
+                checkbox.checked = false;
+                alert('Please select no more than 2 tools');
+            }
+        }
+
+        document.getElementById('tool-selection-form').onsubmit = function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            
+            fetch(window.location.href, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    // Redirect to next task or show success message
+                    alert('Tools selected successfully!');
+                    // Add logic for next task here
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while selecting tools');
+            });
+        };
+    </script>
+</body>
+</html>

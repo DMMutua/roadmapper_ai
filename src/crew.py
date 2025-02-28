@@ -1,7 +1,7 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
-from output_structure import Tool_Structure, Platform_Structure, Project_Structure
-from task_callbacks import update_task_output, user_select_tools, user_select_platforms, user_select_projects
+from .output_structure import Tool_Structure, Platform_Structure, Project_Structure
+from .task_callbacks import update_task_output, user_select_tools, user_select_platforms, user_select_projects
 #import tools
 
 @CrewBase
@@ -12,7 +12,7 @@ class RoadmapperaiCrew():
     def Clarifier(self) -> Agent:
         return Agent(
             config=self.agents_config['Clarifier'],
-            tools=[], # add tools here or use `agentstack tools add <tool_name>
+            tools=[], # For Adding tools: add tools here or use `agentstack tools add <tool_name>
             verbose=True,
         )
 
@@ -45,7 +45,6 @@ class RoadmapperaiCrew():
                 max_choices=2
             )
             )
-    # TODO: Add function to support making tool choices for {role} after task complete
 
     @task
     def platform_options(self) -> Task:
@@ -59,7 +58,7 @@ class RoadmapperaiCrew():
                 max_choices=2
             )
         )
-    # TODO: Add function to support making platform choices for {role} after task complete
+    
     @task
     def project_options(self) -> Task:
         return Task(
@@ -74,7 +73,7 @@ class RoadmapperaiCrew():
                 max_choices=2
             )
         )
-    # TODO: Add function to support making project choices for portfolio of {role} after task complete
+    
 
     @task
     def project_TODO(self) -> Task:

@@ -2,7 +2,7 @@ import json
 from typing import List, Dict, Callable
 import sys
 from pydantic import BaseModel
-from output_structure import Tool_Structure, Platform_Structure, Project_Structure
+from .output_structure import Tool_Structure, Platform_Structure, Project_Structure
 
 
 def update_task_output(task_output: str,
