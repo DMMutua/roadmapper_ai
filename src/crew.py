@@ -1,7 +1,7 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
-from .output_structure import Tool_Structure, Platform_Structure, Project_Structure
-from .task_callbacks import update_task_output, user_select_tools, user_select_platforms, user_select_projects
+from output_structure import Tool_Structure, Platform_Structure, Project_Structure
+from task_callbacks import update_task_output, user_select_tools, user_select_platforms, user_select_projects
 #import tools
 
 @CrewBase
